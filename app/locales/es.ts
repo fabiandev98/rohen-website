@@ -3,7 +3,7 @@ export default {
   language: 'Idioma',
   common: {
     whatsapp: 'HABLAR POR WHATSAPP',
-    contactUs: 'CONTÁCTANOS',
+    contactUs: 'Contáctanos',
     explore: 'Explorar',
     viewService: 'Ver servicio',
     notFound: 'Servicio no encontrado.',
