@@ -26,9 +26,11 @@ const { t } = useI18n()
       <UButton
         :href="contact.whatsappUrl"
         target="_blank"
-        class="flex items-center justify-center text-sm font-bold px-8 py-4 rounded-lg bg-[#D4AF37] text-[#0D1B2A] min-h-[52px]"
+        icon="i-simple-icons-whatsapp"
+        color="neutral"
+        class="flex min-h-[52px] items-center justify-center rounded-lg !bg-[#D4AF37] px-8 py-4 text-sm font-bold !text-[#0D1B2A] hover:!bg-[#E0BD4A]"
       >
-        ◉&nbsp; {{ t('common.whatsapp') }}
+        {{ t('common.contactUs') }}
       </UButton>
     </div>
   </section>
