@@ -103,7 +103,20 @@ const methods = [
 ] as const
 const service = computed(() => services.find((s) => s.id === props.serviceId))
 const detail = computed(() => details[props.serviceId])
+const timelineItems = methods.map((method, index) => ({
+  title: method.title,
+  value: index,
+}))
 const activeMethod = computed(() => methods[active.value] ?? methods[0])
+
+function selectMethod(_event: Event, item: { value?: string | number }) {
+  const index = Number(item.value)
+
+  if (Number.isInteger(index) && index >= 0 && index < methods.length) {
+    active.value = index
+  }
+}
+
 watch(
   () => props.serviceId,
   () => (active.value = 0),
@@ -172,30 +185,25 @@ watch(
             {{ t('serviceDetail.methodologyTitle') }}
           </h2>
         </div>
-        <div class="flex justify-between relative">
-          <div class="absolute top-8 left-[8%] right-[8%] h-px bg-gray-200"></div>
-          <button
-            v-for="(m, i) in methods"
-            :key="m.title"
-            type="button"
-            class="relative z-10 flex flex-col items-center gap-3 w-1/4"
-            @click="active = i"
-          >
-            <span
-              class="w-14 h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center font-bold border-2"
-              :class="
-                active === i
-                  ? 'bg-[#0D1B2A] border-[#0D1B2A] text-[#D4AF37]'
-                  : 'bg-white border-gray-200 text-gray-400'
-              "
-              >0{{ i + 1 }}</span
-            ><span
-              class="hidden sm:block text-sm font-bold"
-              :class="active === i ? 'text-[#0D1B2A]' : 'text-gray-400'"
-              >{{ m.title }}</span
-            >
-          </button>
-        </div>
+        <UTimeline
+          v-model="active"
+          :items="timelineItems"
+          orientation="horizontal"
+          color="neutral"
+          :ui="{
+            root: 'w-full',
+            item: 'cursor-pointer',
+            indicator:
+              'size-14 lg:size-16 !border-2 !border-gray-200 !bg-white !text-gray-400 group-data-[state=active]:!border-[#0D1B2A] group-data-[state=active]:!bg-[#0D1B2A] group-data-[state=active]:!text-[#D4AF37]',
+            separator: 'h-px bg-gray-200 group-data-[state=completed]:!bg-[#0D1B2A]',
+            wrapper: 'pt-3 text-center',
+            title:
+              'hidden sm:block text-xs lg:text-sm font-bold leading-tight text-gray-400 group-data-[state=active]:!text-[#0D1B2A]',
+          }"
+          @select="selectMethod"
+        >
+          <template #indicator="{ item }"> 0{{ Number(item.value) + 1 }} </template>
+        </UTimeline>
         <div class="mt-10 p-6 lg:p-8 rounded-xl bg-[#F8F9FA] border border-gray-200">
           <p class="eyebrow">{{ activeMethod.title }}</p>
           <h3 class="text-xl font-bold mb-3 text-[#0D1B2A]">{{ activeMethod.headline }}</h3>
