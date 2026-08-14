@@ -6,14 +6,9 @@ import pt from '../locales/pt'
 export const supportedLocales = ['en', 'es', 'pt'] as const
 export type SupportedLocale = (typeof supportedLocales)[number]
 
-const savedLocale = localStorage.getItem('rohen-locale')
-const locale = supportedLocales.includes(savedLocale as SupportedLocale)
-  ? (savedLocale as SupportedLocale)
-  : 'en'
-
 export const i18n = createI18n({
   legacy: false,
-  locale,
+  locale: 'en',
   fallbackLocale: 'en',
   messages: { en, es, pt },
 })

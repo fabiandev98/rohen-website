@@ -100,9 +100,10 @@ const methods = [
     description:
       'Monitoreamos el desempeño para sostener los resultados e identificar nuevas oportunidades.',
   },
-]
+] as const
 const service = computed(() => services.find((s) => s.id === props.serviceId))
 const detail = computed(() => details[props.serviceId])
+const activeMethod = computed(() => methods[active.value] ?? methods[0])
 watch(
   () => props.serviceId,
   () => (active.value = 0),
@@ -195,9 +196,9 @@ watch(
           </button>
         </div>
         <div class="mt-10 p-6 lg:p-8 rounded-xl bg-[#F8F9FA] border border-gray-200">
-          <p class="eyebrow">{{ methods[active].title }}</p>
-          <h3 class="text-xl font-bold mb-3 text-[#0D1B2A]">{{ methods[active].headline }}</h3>
-          <p class="text-gray-500 max-w-2xl">{{ methods[active].description }}</p>
+          <p class="eyebrow">{{ activeMethod.title }}</p>
+          <h3 class="text-xl font-bold mb-3 text-[#0D1B2A]">{{ activeMethod.headline }}</h3>
+          <p class="text-gray-500 max-w-2xl">{{ activeMethod.description }}</p>
         </div>
       </div>
     </section>
