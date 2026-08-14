@@ -3,6 +3,7 @@ import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import LanguageSelector from './LanguageSelector.vue'
 import RohenLogo from './RohenLogo.vue'
+import ActionButton from '../shared/ActionButton.vue'
 import { contact, services } from '../../data/site'
 import { supportedLocales, type SupportedLocale } from '../../i18n'
 defineProps<{ activePage: string }>()
@@ -10,10 +11,10 @@ const emit = defineEmits<{ navigate: [page: string] }>()
 const { locale, t } = useI18n()
 const mobile = ref(false)
 const mobileServices = ref(false)
-const localeOptions: Record<SupportedLocale, { flag: string }> = {
-  en: { flag: 'EN' },
-  es: { flag: 'ES' },
-  pt: { flag: 'PT' },
+const localeIcons: Record<SupportedLocale, string> = {
+  en: 'i-circle-flags-us',
+  es: 'i-circle-flags-es',
+  pt: 'i-circle-flags-pt',
 }
 function go(page: string) {
   emit('navigate', page)
@@ -26,6 +27,7 @@ function setLocale(nextLocale: SupportedLocale) {
 const serviceMenuItems = computed(() =>
   services.map((service) => ({
     label: t(`services.${service.id}.title`),
+    icon: 'i-lucide-dot',
     onSelect: () => go(`service-${service.id}`),
   })),
 )
@@ -42,8 +44,8 @@ onBeforeUnmount(() => {
         <UButton
           variant="ghost"
           color="neutral"
-          class="text-sm font-semibold"
-          :class="activePage === 'inicio' ? 'text-[#D4AF37]' : 'text-white'"
+          class="relative text-sm font-semibold after:absolute after:-bottom-2 after:left-1/2 after:h-0.5 after:w-6 after:-translate-x-1/2 after:scale-x-0 after:rounded-full after:bg-[#D4AF37] after:transition-transform after:duration-200"
+          :class="activePage === 'inicio' ? 'text-[#D4AF37] after:scale-x-100' : 'text-white'"
           @click="go('inicio')"
         >
           {{ t('nav.home') }}
@@ -53,15 +55,18 @@ onBeforeUnmount(() => {
           :items="serviceMenuItems"
           :content="{ align: 'start', sideOffset: 10 }"
           :ui="{
-            content: 'w-64 rounded-xl border border-gray-200 bg-white p-1.5 shadow-xl',
-            item: 'rounded-lg px-4 py-2.5 text-sm font-medium text-[#0D1B2A] hover:bg-[#F8F9FA] hover:text-[#D4AF37]',
+            content: 'w-[380px] rounded-xl border border-gray-200 bg-white p-1.5 shadow-xl',
+            item: 'rounded-lg px-4 py-2.5 text-sm font-medium text-[#0D1B2A] data-[highlighted]:!bg-[#FDF7E7] data-[highlighted]:!text-[#0D1B2A]',
+            itemLeadingIcon: 'size-5 !text-[#D4AF37]',
+            itemLabel:
+              'whitespace-normal leading-snug text-[#0D1B2A] group-data-[highlighted]:!text-[#0D1B2A]',
           }"
         >
           <button
-            class="flex items-center gap-1 text-sm font-semibold"
+            class="relative flex items-center gap-1 text-sm font-semibold after:absolute after:-bottom-2 after:left-1/2 after:h-0.5 after:w-6 after:-translate-x-1/2 after:scale-x-0 after:rounded-full after:bg-[#D4AF37] after:transition-transform after:duration-200"
             :class="
               open || activePage.includes('service') || activePage === 'servicios'
-                ? 'text-[#D4AF37]'
+                ? 'text-[#D4AF37] after:scale-x-100'
                 : 'text-white'
             "
             :aria-expanded="open"
@@ -81,23 +86,23 @@ onBeforeUnmount(() => {
           :key="item.p"
           variant="ghost"
           color="neutral"
-          class="text-sm font-semibold"
-          :class="activePage === item.p ? 'text-[#D4AF37]' : 'text-white'"
+          class="relative text-sm font-semibold after:absolute after:-bottom-2 after:left-1/2 after:h-0.5 after:w-6 after:-translate-x-1/2 after:scale-x-0 after:rounded-full after:bg-[#D4AF37] after:transition-transform after:duration-200"
+          :class="activePage === item.p ? 'text-[#D4AF37] after:scale-x-100' : 'text-white'"
           @click="go(item.p)"
         >
           {{ item.l }}
         </UButton>
       </nav>
       <div class="flex items-center gap-4">
-        <UButton
+        <ActionButton
           :href="contact.whatsappUrl"
           target="_blank"
+          :label="t('common.contactUs')"
           icon="i-simple-icons-whatsapp"
-          color="neutral"
-          class="hidden min-h-10 lg:flex rounded-lg !bg-[#D4AF37] px-4 py-2 text-sm font-semibold !text-[#0D1B2A] hover:!bg-[#E0BD4A]"
-        >
-          {{ t('common.contactUs') }}
-        </UButton>
+          background-color="#D4AF37"
+          text-color="#0D1B2A"
+          class="hidden lg:flex"
+        />
         <LanguageSelector
           :locale="locale as SupportedLocale"
           :label="t('language')"
@@ -175,7 +180,8 @@ onBeforeUnmount(() => {
             "
             @click="setLocale(code)"
           >
-            {{ localeOptions[code].flag }} {{ code.toUpperCase() }}
+            <UIcon :name="localeIcons[code]" class="size-4" />
+            {{ code.toUpperCase() }}
           </UButton>
         </div>
       </div>
