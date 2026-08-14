@@ -92,9 +92,11 @@ onBeforeUnmount(() => {
         <UButton
           :href="contact.whatsappUrl"
           target="_blank"
-          class="hidden lg:flex border border-white/40 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-white/10"
+          icon="i-simple-icons-whatsapp"
+          color="neutral"
+          class="hidden min-h-10 lg:flex rounded-lg !bg-[#D4AF37] px-4 py-2 text-sm font-semibold !text-[#0D1B2A] hover:!bg-[#E0BD4A]"
         >
-          ◉&nbsp; {{ t('common.whatsapp') }}
+          {{ t('common.contactUs') }}
         </UButton>
         <LanguageSelector
           :locale="locale as SupportedLocale"
