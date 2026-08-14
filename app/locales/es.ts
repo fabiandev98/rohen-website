@@ -56,6 +56,32 @@ export default {
     value: 'VALOR QUE GENERAMOS',
     methodology: 'NUESTRA METODOLOGÍA',
     methodologyTitle: 'Cómo trabajamos contigo',
+    methodSteps: {
+      diagnosis: {
+        title: 'Diagnóstico',
+        headline: 'Entendemos tu operación actual',
+        description:
+          'Realizamos un análisis profundo de tu situación, procesos y oportunidades para establecer un punto de partida claro.',
+      },
+      planning: {
+        title: 'Planificación',
+        headline: 'Definimos la estrategia',
+        description:
+          'Diseñamos un plan adaptado a tu operación, estableciendo prioridades, responsables y metas medibles.',
+      },
+      implementation: {
+        title: 'Implementación',
+        headline: 'Ejecutamos con tu equipo',
+        description:
+          'Acompañamos la ejecución de las mejoras junto con tu equipo, asegurando resultados concretos.',
+      },
+      optimization: {
+        title: 'Optimización',
+        headline: 'Mejoramos de forma continua',
+        description:
+          'Monitoreamos el desempeño para sostener los resultados e identificar nuevas oportunidades.',
+      },
+    },
   },
   footer: {
     navigation: 'NAVEGACIÓN',

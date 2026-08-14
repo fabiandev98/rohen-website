@@ -3,9 +3,15 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { contact, services } from '../../data/site'
 import CtaBanner from '../../components/shared/CtaBanner.vue'
+import ActionButton from '../../components/shared/ActionButton.vue'
 defineEmits<{ navigate: [page: string] }>()
 const hovered = ref('')
-const icons = ['⌕', '⌁', '□', '♢']
+const icons = [
+  'i-lucide-zoom-in',
+  'i-lucide-chart-no-axes-combined',
+  'i-lucide-package',
+  'i-lucide-shield-check',
+] as const
 const { t } = useI18n()
 </script>
 <template>
@@ -24,9 +30,16 @@ const { t } = useI18n()
           <p class="text-base lg:text-lg leading-relaxed mb-8 max-w-[480px] text-[#6B7280]">
             {{ t('home.description') }}
           </p>
-          <UButton :href="contact.whatsappUrl" target="_blank" class="primary self-start">
+          <ActionButton
+            :href="contact.whatsappUrl"
+            target="_blank"
+            :label="t('common.contactUs')"
+            background-color="#0D1B2A"
+            text-color="#FFFFFF"
+            class="self-start"
+          >
             ◉&nbsp; {{ t('common.whatsapp') }}
-          </UButton>
+          </ActionButton>
         </div>
         <div class="lg:w-[48%] mt-10 lg:mt-0 relative">
           <div
@@ -59,7 +72,7 @@ const { t } = useI18n()
             @mouseleave="hovered = ''"
             @click="$emit('navigate', `service-${card.id}`)"
           >
-            <div class="mb-4 text-3xl text-[#D4AF37]">{{ icons[i] }}</div>
+            <UIcon :name="icons[i]" class="mb-4 size-8 text-[#D4AF37]" />
             <h3 class="text-base font-bold mb-3 leading-snug text-[#0D1B2A]">
               {{ t(`services.${card.id}.title`) }}
             </h3>
@@ -87,14 +100,15 @@ const { t } = useI18n()
           <h2 class="section-title mb-5">{{ t('home.aboutTitle') }}</h2>
           <p class="body-copy mb-4">{{ t('home.aboutDescription') }}</p>
           <p class="body-copy mb-8">{{ t('home.aboutVision') }}</p>
-          <UButton
-            variant="outline"
-            color="neutral"
-            class="border-2 border-[#0D1B2A] text-[#0D1B2A] text-sm font-semibold px-5 py-3 rounded-lg"
+          <ActionButton
+            :label="t('home.learnMore')"
+            background-color="#0D1B2A"
+            text-color="#FFFFFF"
+            class="px-5 py-3"
             @click="$emit('navigate', 'nosotros')"
           >
             {{ t('home.learnMore') }} →
-          </UButton>
+          </ActionButton>
         </div>
         <div class="lg:w-1/2">
           <img
@@ -126,16 +140,5 @@ const { t } = useI18n()
   font-size: 1rem;
   line-height: 1.75;
   color: #6b7280;
-}
-.primary {
-  display: inline-flex;
-  align-items: center;
-  color: white;
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  background: #0d1b2a;
-  min-height: 48px;
 }
 </style>

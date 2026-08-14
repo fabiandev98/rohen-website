@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { contact } from '../../data/site'
 import { useI18n } from 'vue-i18n'
+import ActionButton from './ActionButton.vue'
 const { t } = useI18n()
 </script>
 <template>
@@ -23,15 +24,15 @@ const { t } = useI18n()
           </h2>
         </div>
       </div>
-      <UButton
+      <ActionButton
         :href="contact.whatsappUrl"
         target="_blank"
+        :label="t('common.contactUs')"
         icon="i-simple-icons-whatsapp"
-        color="neutral"
-        class="flex min-h-[52px] items-center justify-center rounded-lg !bg-[#D4AF37] px-8 py-4 text-sm font-bold !text-[#0D1B2A] hover:!bg-[#E0BD4A]"
-      >
-        {{ t('common.contactUs') }}
-      </UButton>
+        background-color="#D4AF37"
+        text-color="#0D1B2A"
+        class="flex min-h-[52px] items-center justify-center px-8 py-4 font-bold"
+      />
     </div>
   </section>
 </template>

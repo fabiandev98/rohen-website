@@ -56,6 +56,31 @@ export default {
     value: 'VALUE WE CREATE',
     methodology: 'OUR METHODOLOGY',
     methodologyTitle: 'How we work with you',
+    methodSteps: {
+      diagnosis: {
+        title: 'Diagnosis',
+        headline: 'We understand your current operation',
+        description:
+          'We conduct an in-depth analysis of your situation, processes, and opportunities to establish a clear starting point.',
+      },
+      planning: {
+        title: 'Planning',
+        headline: 'We define the strategy',
+        description:
+          'We design a plan tailored to your operation, establishing priorities, responsibilities, and measurable goals.',
+      },
+      implementation: {
+        title: 'Implementation',
+        headline: 'We execute alongside your team',
+        description:
+          'We support the execution of improvements alongside your team, ensuring tangible results.',
+      },
+      optimization: {
+        title: 'Optimization',
+        headline: 'We continuously improve',
+        description: 'We monitor performance to sustain results and identify new opportunities.',
+      },
+    },
   },
   footer: {
     navigation: 'NAVIGATION',

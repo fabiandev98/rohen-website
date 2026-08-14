@@ -3,6 +3,7 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { contact, services } from '../../data/site'
 import CtaBanner from '../../components/shared/CtaBanner.vue'
+import ActionButton from '../../components/shared/ActionButton.vue'
 const props = defineProps<{ serviceId: string }>()
 const { t } = useI18n()
 const active = ref(0)
@@ -75,44 +76,47 @@ const details: Record<string, { scope: string[]; value: string[] }> = {
     ],
   },
 }
-const methods = [
+const methods = computed(() => [
   {
-    title: 'Diagnóstico',
-    headline: 'Entendemos tu operación actual',
-    description:
-      'Realizamos un análisis profundo de tu situación, procesos y oportunidades para establecer un punto de partida claro.',
+    title: t('serviceDetail.methodSteps.diagnosis.title'),
+    headline: t('serviceDetail.methodSteps.diagnosis.headline'),
+    description: t('serviceDetail.methodSteps.diagnosis.description'),
   },
   {
-    title: 'Planificación',
-    headline: 'Definimos la estrategia',
-    description:
-      'Diseñamos un plan adaptado a tu operación, estableciendo prioridades, responsables y metas medibles.',
+    title: t('serviceDetail.methodSteps.planning.title'),
+    headline: t('serviceDetail.methodSteps.planning.headline'),
+    description: t('serviceDetail.methodSteps.planning.description'),
   },
   {
-    title: 'Implementación',
-    headline: 'Ejecutamos con tu equipo',
-    description:
-      'Acompañamos la ejecución de las mejoras junto con tu equipo, asegurando resultados concretos.',
+    title: t('serviceDetail.methodSteps.implementation.title'),
+    headline: t('serviceDetail.methodSteps.implementation.headline'),
+    description: t('serviceDetail.methodSteps.implementation.description'),
   },
   {
-    title: 'Optimización',
-    headline: 'Mejoramos de forma continua',
-    description:
-      'Monitoreamos el desempeño para sostener los resultados e identificar nuevas oportunidades.',
+    title: t('serviceDetail.methodSteps.optimization.title'),
+    headline: t('serviceDetail.methodSteps.optimization.headline'),
+    description: t('serviceDetail.methodSteps.optimization.description'),
   },
-] as const
+])
 const service = computed(() => services.find((s) => s.id === props.serviceId))
 const detail = computed(() => details[props.serviceId])
-const timelineItems = methods.map((method, index) => ({
-  title: method.title,
-  value: index,
-}))
-const activeMethod = computed(() => methods[active.value] ?? methods[0])
+const timelineItems = computed(() =>
+  methods.value.map((method, index) => ({
+    title: method.title,
+    value: index,
+    ui: index === methods.value.length - 1 ? { item: 'flex-none' } : undefined,
+  })),
+)
+const activeMethod = computed(() => methods.value[active.value] ?? methods.value[0]!)
 
-function selectMethod(_event: Event, item: { value?: string | number }) {
+function selectMethod(event: Event, item: { value?: string | number }) {
+  if (!(event.target instanceof Element) || !event.target.closest('[data-slot="indicator"]')) {
+    return
+  }
+
   const index = Number(item.value)
 
-  if (Number.isInteger(index) && index >= 0 && index < methods.length) {
+  if (Number.isInteger(index) && index >= 0 && index < methods.value.length) {
     active.value = index
   }
 }
@@ -136,9 +140,19 @@ watch(
           <p class="text-base lg:text-lg leading-relaxed mb-8 text-[#6B7280]">
             {{ t(`services.${service.id}.description`) }}
           </p>
-          <UButton :href="contact.whatsappUrl" target="_blank" class="primary self-start">
+          <ActionButton
+            :href="contact.whatsappUrl"
+            target="_blank"
+            :label="t('common.contactUs')"
+            background-color="#0D1B2A"
+            text-color="#FFFFFF"
+            class="self-start"
+          >
+            <!--
             ◉&nbsp; {{ t('common.whatsapp') }}
-          </UButton>
+            -->
+            {{ t('common.contactUs') }}
+          </ActionButton>
         </div>
         <div class="lg:w-[48%] mt-10 lg:mt-0">
           <img
@@ -191,12 +205,12 @@ watch(
           orientation="horizontal"
           color="neutral"
           :ui="{
-            root: 'w-full',
-            item: 'cursor-pointer',
+            root: 'w-full pb-12 lg:pb-14',
             indicator:
-              'size-14 lg:size-16 !border-2 !border-gray-200 !bg-white !text-gray-400 group-data-[state=active]:!border-[#0D1B2A] group-data-[state=active]:!bg-[#0D1B2A] group-data-[state=active]:!text-[#D4AF37]',
+              'size-14 lg:size-16 cursor-pointer !border-2 !border-gray-200 !bg-white !text-gray-400 transition-transform duration-200 hover:scale-110 hover:!border-[#D4AF37] group-data-[state=active]:!border-[#0D1B2A] group-data-[state=active]:!bg-[#0D1B2A] group-data-[state=active]:!text-[#D4AF37]',
             separator: 'h-px bg-gray-200 group-data-[state=completed]:!bg-[#0D1B2A]',
-            wrapper: 'pt-3 text-center',
+            wrapper:
+              'absolute top-[68px] left-11 w-44 -translate-x-1/2 text-center lg:top-20 lg:left-12',
             title:
               'hidden sm:block text-xs lg:text-sm font-bold leading-tight text-gray-400 group-data-[state=active]:!text-[#0D1B2A]',
           }"
@@ -225,15 +239,6 @@ watch(
   letter-spacing: 0.12em;
   margin-bottom: 0.75rem;
   color: #d4af37;
-}
-.primary {
-  display: inline-flex;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  background: #0d1b2a;
-  color: white;
-  font-size: 0.875rem;
-  font-weight: 600;
 }
 .list-title {
   font-size: 1.1rem;

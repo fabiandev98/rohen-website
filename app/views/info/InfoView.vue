@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { contact, services } from '../../data/site'
+import ActionButton from '../../components/shared/ActionButton.vue'
 import { useI18n } from 'vue-i18n'
 defineProps<{ page: string }>()
 defineEmits<{ navigate: [page: string] }>()
@@ -15,6 +16,14 @@ const values = [
   ['Colaboración', 'Trabajamos como extensión del equipo interno de cada organización.'],
   ['Mejora continua', 'Buscamos constantemente nuevas oportunidades de eficiencia y valor.'],
 ]
+const valueIcons = [
+  'i-lucide-badge-check',
+  'i-lucide-target',
+  'i-lucide-eye',
+  'i-lucide-sliders-horizontal',
+  'i-lucide-handshake',
+  'i-lucide-chart-no-axes-combined',
+] as const
 </script>
 <template>
   <main class="py-20">
@@ -52,20 +61,23 @@ const values = [
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <article
-            v-for="v in values"
+            v-for="(v, index) in values"
             :key="v[0]"
-            class="p-6 rounded-xl border border-gray-200 bg-[#F8F9FA]"
+            class="group rounded-xl border border-gray-200 bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:border-[#D4AF37] hover:shadow-lg"
           >
-            <i class="block w-2 h-2 rounded-full mb-4 bg-[#D4AF37]"></i>
+            <UIcon
+              :name="valueIcons[index]"
+              class="mb-4 size-7 text-[#D4AF37] transition-transform duration-200 group-hover:translate-x-1"
+            />
             <h3 class="font-bold mb-2 text-[#0D1B2A]">{{ v[0] }}</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">{{ v[1] }}</p>
+            <p class="text-sm leading-relaxed text-[#4B5563]">{{ v[1] }}</p>
           </article>
         </div></template
       >
       <template v-else-if="page === 'servicios'"
         ><div class="heading">
-          <p class="eyebrow">NUESTROS SERVICIOS</p>
-          <h1>Soluciones a la medida de tu operación.</h1>
+          <p class="eyebrow">{{ t('home.servicesEyebrow') }}</p>
+          <h1>{{ t('home.servicesTitle') }}</h1>
         </div>
         <div class="space-y-6">
           <article
@@ -82,7 +94,7 @@ const values = [
               <p class="text-sm text-gray-500">{{ t(`services.${s.id}.description`) }}</p>
             </div>
             <UButton variant="link" color="neutral" class="font-semibold text-sm">
-              Ver servicio →
+              {{ t('common.viewService') }} →
             </UButton>
           </article>
         </div></template
@@ -107,15 +119,15 @@ const values = [
           </div>
         </div>
         <div class="mt-12 text-center">
-          <UButton
+          <ActionButton
             :href="contact.whatsappUrl"
             target="_blank"
-            class="inline-flex text-white text-sm font-semibold px-8 py-4 rounded-lg bg-[#0D1B2A]"
-          >
-            INICIAR CONVERSACIÓN POR WHATSAPP
-          </UButton>
-        </div></template
-      >
+            label="Contáctanos por WhatsApp"
+            background-color="#0D1B2A"
+            text-color="#FFFFFF"
+            class="inline-flex px-8 py-4"
+          /></div
+      ></template>
     </div>
   </main>
 </template>
