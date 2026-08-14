@@ -4,7 +4,8 @@ export const contact = {
   phoneUrl: 'tel:+525512345678',
   email: 'hola@rohen.com',
   linkedin: 'https://linkedin.com',
-  location: 'Mexico City, Mexico',
+  instagram: 'https://www.instagram.com/rohenscs',
+  location: 'Dubai, UAE',
 }
 
 export const services = [

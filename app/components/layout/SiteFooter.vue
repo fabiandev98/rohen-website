@@ -6,17 +6,21 @@ defineEmits<{ navigate: [page: string] }>()
 const { t } = useI18n()
 </script>
 <template>
-  <footer class="bg-[#0D1B2A]">
-    <div class="max-w-[1280px] mx-auto px-6 lg:px-8 pt-16 pb-8">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+  <footer class="border-t border-gray-200 bg-white">
+    <div class="max-w-[1280px] mx-auto px-6 lg:px-8 pt-12 pb-6">
+      <div class="grid gap-10 mb-10 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <RohenLogo light />
-          <p class="text-sm leading-relaxed my-5 text-slate-400">
+          <RohenLogo />
+          <p class="my-5 text-sm leading-relaxed text-gray-500">
             {{ t('footer.description') }}
           </p>
           <div class="flex gap-3">
             <a :href="contact.linkedin" target="_blank" class="social">in</a
-            ><a :href="contact.whatsappUrl" target="_blank" class="social">◉</a>
+            ><a :href="contact.whatsappUrl" target="_blank" class="social" aria-label="WhatsApp">
+              <UIcon name="i-simple-icons-whatsapp" class="size-4" /> </a
+            ><a :href="contact.instagram" target="_blank" class="social" aria-label="Instagram">
+              <UIcon name="i-simple-icons-instagram" class="size-4" />
+            </a>
           </div>
         </div>
         <div>
@@ -58,7 +62,7 @@ const { t } = useI18n()
         </div>
       </div>
       <div
-        class="pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-4 text-xs text-slate-500"
+        class="flex flex-col justify-between gap-4 border-t border-gray-200 pt-6 text-xs text-gray-400 sm:flex-row"
       >
         <p>
           © {{ new Date().getFullYear() }} ROHEN Supply Chain Solutions. {{ t('footer.rights') }}
@@ -76,26 +80,35 @@ h3 {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #94a3b8;
+  color: #0d1b2a;
   margin-bottom: 1.25rem;
 }
 .footer-link {
   display: block;
-  color: #cbd5e1;
+  color: #6b7280;
   font-size: 0.875rem;
   text-align: left;
   margin-bottom: 0.75rem;
 }
 .footer-link:hover {
-  color: white;
+  color: #0d1b2a;
 }
 .social {
   width: 2.25rem;
   height: 2.25rem;
-  border: 1px solid rgb(255 255 255/0.15);
+  border: 1px solid #d1d5db;
   border-radius: 0.5rem;
   display: grid;
   place-items: center;
-  color: #cbd5e1;
+  color: #0d1b2a;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background-color 0.2s;
+}
+.social:hover {
+  border-color: #d4af37;
+  background-color: #fdf7e7;
+  color: #0d1b2a;
 }
 </style>
