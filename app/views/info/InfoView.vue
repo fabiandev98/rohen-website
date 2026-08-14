@@ -81,7 +81,9 @@ const values = [
               </h2>
               <p class="text-sm text-gray-500">{{ t(`services.${s.id}.description`) }}</p>
             </div>
-            <button class="font-semibold text-sm">Ver servicio →</button>
+            <UButton variant="link" color="neutral" class="font-semibold text-sm">
+              Ver servicio →
+            </UButton>
           </article>
         </div></template
       >
@@ -105,12 +107,13 @@ const values = [
           </div>
         </div>
         <div class="mt-12 text-center">
-          <a
+          <UButton
             :href="contact.whatsappUrl"
             target="_blank"
             class="inline-flex text-white text-sm font-semibold px-8 py-4 rounded-lg bg-[#0D1B2A]"
-            >INICIAR CONVERSACIÓN POR WHATSAPP</a
           >
+            INICIAR CONVERSACIÓN POR WHATSAPP
+          </UButton>
         </div></template
       >
     </div>

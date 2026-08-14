@@ -123,9 +123,9 @@ watch(
           <p class="text-base lg:text-lg leading-relaxed mb-8 text-[#6B7280]">
             {{ t(`services.${service.id}.description`) }}
           </p>
-          <a :href="contact.whatsappUrl" target="_blank" class="primary self-start"
-            >◉&nbsp; {{ t('common.whatsapp') }}</a
-          >
+          <UButton :href="contact.whatsappUrl" target="_blank" class="primary self-start">
+            ◉&nbsp; {{ t('common.whatsapp') }}
+          </UButton>
         </div>
         <div class="lg:w-[48%] mt-10 lg:mt-0">
           <img
@@ -174,9 +174,11 @@ watch(
         </div>
         <div class="flex justify-between relative">
           <div class="absolute top-8 left-[8%] right-[8%] h-px bg-gray-200"></div>
-          <button
+          <UButton
             v-for="(m, i) in methods"
             :key="m.title"
+            variant="ghost"
+            color="neutral"
             class="relative z-10 flex flex-col items-center gap-3 w-1/4"
             @click="active = i"
           >
@@ -193,7 +195,7 @@ watch(
               :class="active === i ? 'text-[#0D1B2A]' : 'text-gray-400'"
               >{{ m.title }}</span
             >
-          </button>
+          </UButton>
         </div>
         <div class="mt-10 p-6 lg:p-8 rounded-xl bg-[#F8F9FA] border border-gray-200">
           <p class="eyebrow">{{ activeMethod.title }}</p>

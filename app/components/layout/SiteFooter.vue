@@ -21,7 +21,7 @@ const { t } = useI18n()
         </div>
         <div>
           <h3>{{ t('footer.navigation') }}</h3>
-          <button
+          <UButton
             v-for="l in [
               { n: t('nav.home'), p: 'inicio' },
               { n: t('nav.about'), p: 'nosotros' },
@@ -29,22 +29,26 @@ const { t } = useI18n()
               { n: t('nav.contact'), p: 'contacto' },
             ]"
             :key="l.p"
+            variant="link"
+            color="neutral"
             class="footer-link"
             @click="$emit('navigate', l.p)"
           >
             {{ l.n }}
-          </button>
+          </UButton>
         </div>
         <div>
           <h3>{{ t('footer.services') }}</h3>
-          <button
+          <UButton
             v-for="s in services"
             :key="s.id"
+            variant="link"
+            color="neutral"
             class="footer-link"
             @click="$emit('navigate', `service-${s.id}`)"
           >
             {{ t(`services.${s.id}.title`) }}
-          </button>
+          </UButton>
         </div>
         <div>
           <h3>{{ t('footer.contact') }}</h3>
@@ -60,7 +64,8 @@ const { t } = useI18n()
           © {{ new Date().getFullYear() }} ROHEN Supply Chain Solutions. {{ t('footer.rights') }}
         </p>
         <div class="flex gap-6">
-          <button>{{ t('footer.privacy') }}</button><button>{{ t('footer.terms') }}</button>
+          <UButton variant="link" color="neutral">{{ t('footer.privacy') }}</UButton>
+          <UButton variant="link" color="neutral">{{ t('footer.terms') }}</UButton>
         </div>
       </div>
     </div>

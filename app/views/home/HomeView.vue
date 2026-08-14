@@ -24,9 +24,9 @@ const { t } = useI18n()
           <p class="text-base lg:text-lg leading-relaxed mb-8 max-w-[480px] text-[#6B7280]">
             {{ t('home.description') }}
           </p>
-          <a :href="contact.whatsappUrl" target="_blank" class="primary self-start"
-            >◉&nbsp; {{ t('common.whatsapp') }}</a
-          >
+          <UButton :href="contact.whatsappUrl" target="_blank" class="primary self-start">
+            ◉&nbsp; {{ t('common.whatsapp') }}
+          </UButton>
         </div>
         <div class="lg:w-[48%] mt-10 lg:mt-0 relative">
           <div
@@ -66,12 +66,14 @@ const { t } = useI18n()
             <p class="text-sm leading-relaxed flex-1 mb-4 text-[#6B7280]">
               {{ t(`services.${card.id}.description`) }}
             </p>
-            <button
+            <UButton
+              variant="link"
+              color="neutral"
               class="text-sm font-semibold text-left"
               :class="hovered === card.id ? 'text-[#D4AF37]' : 'text-[#0D1B2A]'"
             >
               {{ t('common.explore') }} →
-            </button>
+            </UButton>
           </article>
         </div>
       </div>
@@ -85,12 +87,14 @@ const { t } = useI18n()
           <h2 class="section-title mb-5">{{ t('home.aboutTitle') }}</h2>
           <p class="body-copy mb-4">{{ t('home.aboutDescription') }}</p>
           <p class="body-copy mb-8">{{ t('home.aboutVision') }}</p>
-          <button
+          <UButton
+            variant="outline"
+            color="neutral"
             class="border-2 border-[#0D1B2A] text-[#0D1B2A] text-sm font-semibold px-5 py-3 rounded-lg"
             @click="$emit('navigate', 'nosotros')"
           >
             {{ t('home.learnMore') }} →
-          </button>
+          </UButton>
         </div>
         <div class="lg:w-1/2">
           <img

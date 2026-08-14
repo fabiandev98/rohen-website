@@ -39,13 +39,15 @@ onBeforeUnmount(() => {
     <div class="max-w-[1280px] mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
       <button @click="go('inicio')"><RohenLogo light /></button>
       <nav class="hidden lg:flex items-center gap-8">
-        <button
+        <UButton
+          variant="ghost"
+          color="neutral"
           class="text-sm font-semibold"
           :class="activePage === 'inicio' ? 'text-[#D4AF37]' : 'text-white'"
           @click="go('inicio')"
         >
           {{ t('nav.home') }}
-        </button>
+        </UButton>
         <UDropdownMenu
           v-slot="{ open }"
           :items="serviceMenuItems"
@@ -71,26 +73,29 @@ onBeforeUnmount(() => {
             />
           </button>
         </UDropdownMenu>
-        <button
+        <UButton
           v-for="item in [
             { l: t('nav.about'), p: 'nosotros' },
             { l: t('nav.contact'), p: 'contacto' },
           ]"
           :key="item.p"
+          variant="ghost"
+          color="neutral"
           class="text-sm font-semibold"
           :class="activePage === item.p ? 'text-[#D4AF37]' : 'text-white'"
           @click="go(item.p)"
         >
           {{ item.l }}
-        </button>
+        </UButton>
       </nav>
       <div class="flex items-center gap-4">
-        <a
+        <UButton
           :href="contact.whatsappUrl"
           target="_blank"
           class="hidden lg:flex border border-white/40 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-white/10"
-          >◉&nbsp; {{ t('common.whatsapp') }}</a
         >
+          ◉&nbsp; {{ t('common.whatsapp') }}
+        </UButton>
         <LanguageSelector
           :locale="locale as SupportedLocale"
           :label="t('language')"
@@ -106,48 +111,60 @@ onBeforeUnmount(() => {
       </div>
     </div>
     <div v-if="mobile" class="lg:hidden fixed inset-0 top-16 z-40 bg-[#0D1B2A] p-6">
-      <button
+      <UButton
+        variant="ghost"
+        color="neutral"
         class="w-full text-left py-4 text-white font-semibold border-b border-white/10"
         @click="go('inicio')"
       >
         {{ t('nav.home') }}
-      </button>
-      <button
+      </UButton>
+      <UButton
+        variant="ghost"
+        color="neutral"
         class="w-full flex justify-between py-4 text-white font-semibold border-b border-white/10"
         @click="mobileServices = !mobileServices"
       >
         {{ t('nav.services') }} <span>{{ mobileServices ? '−' : '+' }}</span>
-      </button>
+      </UButton>
       <div v-if="mobileServices" class="pl-4">
-        <button
+        <UButton
           v-for="s in services"
           :key="s.id"
+          variant="ghost"
+          color="neutral"
           class="block w-full text-left py-3 text-sm text-[#D4AF37] border-b border-white/5"
           @click="go(`service-${s.id}`)"
         >
           {{ t(`services.${s.id}.title`) }}
-        </button>
+        </UButton>
       </div>
-      <button
+      <UButton
+        variant="ghost"
+        color="neutral"
         class="w-full text-left py-4 text-white font-semibold border-b border-white/10"
         @click="go('nosotros')"
       >
         {{ t('nav.about') }}
-      </button>
-      <button
+      </UButton>
+      <UButton
+        variant="ghost"
+        color="neutral"
         class="w-full text-left py-4 text-white font-semibold border-b border-white/10"
         @click="go('contacto')"
       >
         {{ t('nav.contact') }}
-      </button>
+      </UButton>
       <div class="mt-6 border-t border-white/10 pt-5">
         <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-400">
           {{ t('language') }}
         </p>
         <div class="grid grid-cols-3 gap-2">
-          <button
+          <UButton
             v-for="code in supportedLocales"
             :key="code"
+            variant="ghost"
+            color="neutral"
             class="rounded-lg border px-2 py-2 text-sm font-semibold"
             :class="
               locale === code
@@ -157,15 +174,16 @@ onBeforeUnmount(() => {
             @click="setLocale(code)"
           >
             {{ localeOptions[code].flag }} {{ code.toUpperCase() }}
-          </button>
+          </UButton>
         </div>
       </div>
-      <a
+      <UButton
         :href="contact.whatsappUrl"
         target="_blank"
         class="mt-6 flex justify-center text-white text-sm font-semibold px-4 py-3 rounded-lg bg-[#1B365D]"
-        >{{ t('common.whatsapp') }}</a
       >
+        {{ t('common.whatsapp') }}
+      </UButton>
     </div>
   </header>
 </template>

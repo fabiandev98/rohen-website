@@ -23,12 +23,13 @@ const { t } = useI18n()
           </h2>
         </div>
       </div>
-      <a
+      <UButton
         :href="contact.whatsappUrl"
         target="_blank"
         class="flex items-center justify-center text-sm font-bold px-8 py-4 rounded-lg bg-[#D4AF37] text-[#0D1B2A] min-h-[52px]"
-        >◉&nbsp; {{ t('common.whatsapp') }}</a
       >
+        ◉&nbsp; {{ t('common.whatsapp') }}
+      </UButton>
     </div>
   </section>
 </template>
