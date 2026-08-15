@@ -11,6 +11,7 @@ const icons = [
   'i-lucide-chart-no-axes-combined',
   'i-lucide-package',
   'i-lucide-shield-check',
+  'i-lucide-clipboard-list',
 ] as const
 const { t } = useI18n()
 </script>
@@ -59,7 +60,7 @@ const { t } = useI18n()
           <p class="eyebrow">{{ t('home.servicesEyebrow') }}</p>
           <h2 class="section-title">{{ t('home.servicesTitle') }}</h2>
         </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <article
             v-for="(card, i) in services"
             :key="card.id"

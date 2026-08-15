@@ -5,77 +5,9 @@ import { contact, services } from '../../data/site'
 import CtaBanner from '../../components/shared/CtaBanner.vue'
 import ActionButton from '../../components/shared/ActionButton.vue'
 const props = defineProps<{ serviceId: string }>()
-const { t } = useI18n()
+const { t, tm } = useI18n()
 const active = ref(0)
-const details: Record<string, { scope: string[]; value: string[] }> = {
-  procurement: {
-    scope: [
-      'Análisis de gasto y segmentación de categorías.',
-      'Estrategia de abastecimiento y definición de sourcing.',
-      'Evaluación, selección y desarrollo de proveedores.',
-      'Negociación de contratos y gestión de condiciones.',
-      'Gestión de desempeño y riesgos de proveedores.',
-      'Mejora continua y generación de ahorros sostenibles.',
-    ],
-    value: [
-      'Reducción de costos totales sin comprometer calidad.',
-      'Proveedores más confiables y relaciones estratégicas.',
-      'Procesos de compra más ágiles y eficientes.',
-      'Visibilidad total del gasto y mejor control presupuestal.',
-      'Cadenas de suministro más resilientes y sostenibles.',
-    ],
-  },
-  'planning-cost-control': {
-    scope: [
-      'Planificación de la demanda y pronóstico.',
-      'Planificación de materiales y requerimientos.',
-      'Elaboración de presupuesto operativo.',
-      'Proyección y control de costos.',
-      'Planificación de inventarios y BOQ.',
-      'Control presupuestal y seguimiento de desviaciones.',
-    ],
-    value: [
-      'Control financiero claro y estructurado.',
-      'Pronósticos más precisos y confiables.',
-      'Reducción de desperdicios y sobrecostos.',
-      'Mejor toma de decisiones basada en datos.',
-      'Rentabilidad mejorada y sostenible.',
-    ],
-  },
-  'logistics-materials': {
-    scope: [
-      'Gestión y control de inventarios.',
-      'Recepción, almacenamiento y despacho de materiales.',
-      'Planificación de entregas y distribución.',
-      'Control de stock y puntos de reorden.',
-      'Organización de sitio y aplicación de 5S.',
-      'Manejo seguro y eficiente de materiales.',
-    ],
-    value: [
-      'Disponibilidad garantizada de materiales clave.',
-      'Reducción de desperdicios y pérdidas operativas.',
-      'Menor número de faltantes y paros por desabasto.',
-      'Mayor productividad del equipo operativo.',
-      'Trazabilidad completa del flujo de materiales.',
-    ],
-  },
-  'advisory-risk': {
-    scope: [
-      'Evaluación de riesgos en la cadena de suministro.',
-      'Inteligencia de mercado y benchmarking.',
-      'Monitoreo de factores geopolíticos y regulatorios.',
-      'Análisis de riesgos por proveedor y categoría.',
-      'Planificación de escenarios y planes de contingencia.',
-    ],
-    value: [
-      'Reducción del nivel de exposición a riesgos críticos.',
-      'Continuidad operativa ante disrupciones externas.',
-      'Mayor preparación ante escenarios adversos.',
-      'Decisiones más rápidas e informadas.',
-      'Cadena de suministro más resiliente y adaptable.',
-    ],
-  },
-}
+type ServiceDetail = { scope: string[]; value: string[] }
 const methods = computed(() => [
   {
     title: t('serviceDetail.methodSteps.diagnosis.title'),
@@ -99,7 +31,11 @@ const methods = computed(() => [
   },
 ])
 const service = computed(() => services.find((s) => s.id === props.serviceId))
-const detail = computed(() => details[props.serviceId])
+const detail = computed(() =>
+  service.value
+    ? (tm(`serviceDetail.details.${service.value.id}`) as unknown as ServiceDetail)
+    : undefined,
+)
 const timelineItems = computed(() =>
   methods.value.map((method, index) => ({
     title: method.title,
@@ -166,25 +102,41 @@ watch(
     <section class="py-20 bg-[#F8F9FA]">
       <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
         <div
-          class="bg-white rounded-2xl p-8 lg:p-12 border border-gray-200 grid lg:grid-cols-2 gap-12"
+          class="bg-white rounded-2xl p-8 lg:p-12 border border-gray-200 grid lg:grid-cols-2 gap-12 lg:gap-16"
         >
           <div>
-            <h2 class="list-title">◎ {{ t('serviceDetail.scope') }}</h2>
-            <ul class="space-y-4">
-              <li v-for="item in detail.scope" :key="item" class="flex gap-3 text-sm text-gray-700">
-                <b class="text-[#D4AF37]">✓</b>{{ item }}
+            <h2 class="list-title">
+              <UIcon name="i-lucide-circle-dot" class="size-7 shrink-0 text-[#D4AF37]" />
+              {{ t('serviceDetail.scope') }}
+            </h2>
+            <ul class="space-y-4 lg:space-y-5">
+              <li
+                v-for="item in detail.scope"
+                :key="item"
+                class="flex items-start gap-3 text-base lg:text-lg leading-relaxed text-[#34445B]"
+              >
+                <span
+                  class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-[#0D1B2A] text-white"
+                >
+                  <UIcon name="i-lucide-check" class="size-3.5" />
+                </span>
+                <span>{{ item }}</span>
               </li>
             </ul>
           </div>
           <div>
-            <h2 class="list-title">☆ {{ t('serviceDetail.value') }}</h2>
-            <div class="space-y-3">
+            <h2 class="list-title">
+              <UIcon name="i-lucide-star" class="size-7 shrink-0 text-[#D4AF37]" />
+              {{ t('serviceDetail.value') }}
+            </h2>
+            <div class="space-y-3 lg:space-y-4">
               <div
                 v-for="item in detail.value"
                 :key="item"
-                class="p-4 rounded-lg bg-[#F8F9FA] border border-gray-200 text-sm text-gray-700"
+                class="flex items-center gap-4 rounded-xl border border-gray-200 bg-[#F8F9FA] px-5 py-4 text-base lg:text-lg leading-relaxed text-[#34445B]"
               >
-                <b class="text-[#D4AF37]">⚡</b> {{ item }}
+                <UIcon name="i-lucide-zap" class="size-5 shrink-0 text-[#D4AF37]" />
+                <span>{{ item }}</span>
               </div>
             </div>
           </div>
@@ -241,10 +193,13 @@ watch(
   color: #d4af37;
 }
 .list-title {
-  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: #0d1b2a;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 </style>

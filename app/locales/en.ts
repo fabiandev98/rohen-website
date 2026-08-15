@@ -26,29 +26,35 @@ export default {
   },
   cta: { eyebrow: 'DO YOU HAVE A PROJECT IN MIND?', title: 'Let’s talk about how we can help.' },
   services: {
-    procurement: {
+    'supply-chain-consulting': {
       eyebrow: 'SERVICE 01',
-      title: 'Procurement & Strategic Sourcing',
+      title: 'Logistics & Procurement Consulting',
       description:
-        'We optimize sourcing, supplier selection, and negotiation to reduce costs and improve purchasing quality.',
+        'End-to-end supply chain diagnosis and optimization for industrial and commercial operations.',
     },
-    'planning-cost-control': {
+    'outsourcing-operations': {
       eyebrow: 'SERVICE 02',
-      title: 'Supply Chain Planning & Cost Control',
+      title: 'Specialized Outsourcing & Operations Management',
       description:
-        'We plan demand and control operating costs to ensure budget efficiency and financial visibility.',
+        'Delegated management of key procurement and logistics processes to release capacity and reduce fixed costs.',
     },
-    'logistics-materials': {
+    'commercial-trading': {
       eyebrow: 'SERVICE 03',
-      title: 'Logistics & Materials Management',
+      title: 'Commercial Brokerage & Multisector Trading',
       description:
-        'We manage inventories, warehouses, and material flows to ensure availability, order, and traceability.',
+        'Specialized commercial intermediation and trading backed by direct licenses in strategic sectors.',
     },
-    'advisory-risk': {
+    'strategy-management-advisory': {
       eyebrow: 'SERVICE 04',
-      title: 'Supply Chain Advisory & Risk Management',
+      title: 'Strategy & Management Advisory',
       description:
-        'We identify risks, analyze markets, and design strategies to strengthen supply-chain resilience.',
+        'Executive consulting for strategic design, organizational restructuring, and competitive advantage.',
+    },
+    'project-management-development': {
+      eyebrow: 'SERVICE 05',
+      title: 'Project Management & Development Consulting',
+      description:
+        'Leadership and technical consulting for project development, execution, and control.',
     },
   },
   serviceDetail: {
@@ -56,6 +62,80 @@ export default {
     value: 'VALUE WE CREATE',
     methodology: 'OUR METHODOLOGY',
     methodologyTitle: 'How we work with you',
+    details: {
+      'supply-chain-consulting': {
+        scope: [
+          'Strategic procurement consulting and supplier selection.',
+          'Supply chain audits and logistics process redesign.',
+          'Warehouse and distribution flow management.',
+          'Identification and reduction of hidden operating costs.',
+          'Operational risk mapping and business continuity planning.',
+        ],
+        value: [
+          'An integrated, efficient supply chain.',
+          'Greater visibility of costs and operational risks.',
+          'Stronger supplier and logistics performance.',
+          'A practical roadmap for continuous improvement.',
+        ],
+      },
+      'outsourcing-operations': {
+        scope: [
+          'Delegated procurement and logistics management under strict KPIs.',
+          'On-site operational supervision and quality standards.',
+          'End-to-end supply cycle administration.',
+          'Supplier coordination from order to final delivery.',
+        ],
+        value: [
+          'More internal capacity for your core business.',
+          'Lower fixed operating costs.',
+          'Consistent execution with measurable KPIs.',
+          'Better control and continuity of critical operations.',
+        ],
+      },
+      'commercial-trading': {
+        scope: [
+          'B2B commercial brokerage and international deal structuring.',
+          'Construction materials sourcing, negotiation, and trading.',
+          'Heavy machinery and industrial equipment intermediation.',
+          'Textile product and input trading.',
+        ],
+        value: [
+          'Access to qualified international suppliers and buyers.',
+          'Structured, reliable commercial transactions.',
+          'Specialized sourcing across strategic sectors.',
+          'Greater reach for your commercial opportunities.',
+        ],
+      },
+      'strategy-management-advisory': {
+        scope: [
+          'Corporate strategy, expansion plans, and market entry.',
+          'Business model and competitive positioning advisory.',
+          'Organizational effectiveness and governance diagnosis.',
+          'Critical process reengineering and bottleneck resolution.',
+        ],
+        value: [
+          'A clearer strategic direction.',
+          'More effective organizations and leadership alignment.',
+          'Restored performance in critical processes.',
+          'Sustainable competitive advantage.',
+        ],
+      },
+      'project-management-development': {
+        scope: [
+          'Project conception, feasibility, structuring, and design.',
+          'Project Management Office (PMO) implementation and support.',
+          'Schedule, budget, quality, and deviation control.',
+          'Operational site supervision for industrial and construction projects.',
+          'Supply chain integration for construction and commissioning.',
+        ],
+        value: [
+          'Projects with greater control from concept to delivery.',
+          'Earlier visibility of risks and deviations.',
+          'Better coordination among teams, suppliers, and milestones.',
+          'Reliable execution in industrial and construction environments.',
+        ],
+      },
+    },
     methodSteps: {
       diagnosis: {
         title: 'Diagnosis',
