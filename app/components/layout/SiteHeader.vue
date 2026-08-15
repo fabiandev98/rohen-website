@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
+import { useRoute, useRouter } from '#app'
 import { useI18n } from 'vue-i18n'
 import LanguageSelector from './LanguageSelector.vue'
 import RohenLogo from './RohenLogo.vue'
@@ -9,6 +10,8 @@ import { supportedLocales, type SupportedLocale } from '../../i18n'
 defineProps<{ activePage: string }>()
 const emit = defineEmits<{ navigate: [page: string] }>()
 const { locale, t } = useI18n()
+const route = useRoute()
+const router = useRouter()
 const mobile = ref(false)
 const mobileServices = ref(false)
 const localeIcons: Record<SupportedLocale, string> = {
@@ -21,8 +24,14 @@ function go(page: string) {
   mobile.value = false
 }
 function setLocale(nextLocale: SupportedLocale) {
-  locale.value = nextLocale
-  localStorage.setItem('rohen-locale', nextLocale)
+  if (nextLocale === locale.value) return
+
+  void router.push({
+    name: route.name,
+    params: { ...route.params, locale: nextLocale },
+    query: route.query,
+    hash: route.hash,
+  })
 }
 const serviceMenuItems = computed(() =>
   services.map((service) => ({
@@ -103,11 +112,13 @@ onBeforeUnmount(() => {
           text-color="#0D1B2A"
           class="hidden lg:flex"
         />
-        <LanguageSelector
-          :locale="locale as SupportedLocale"
-          :label="t('language')"
-          @select="setLocale"
-        />
+        <div class="hidden lg:block">
+          <LanguageSelector
+            :locale="locale as SupportedLocale"
+            :label="t('language')"
+            @select="setLocale"
+          />
+        </div>
         <button
           class="lg:hidden text-white p-2 text-2xl"
           aria-label="Menú"
