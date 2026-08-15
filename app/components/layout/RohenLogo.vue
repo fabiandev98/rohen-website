@@ -1,16 +1,18 @@
 <script setup lang="ts">
+import logo from '../../assets/images/rohen-logo.svg'
+
 defineProps<{ light?: boolean }>()
 </script>
 <template>
   <div class="flex items-center gap-3">
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-      <rect width="40" height="40" rx="4" fill="#0D1B2A" />
+    <svg v-if="light" class="h-10 w-auto" viewBox="0 0 406 430" fill="none" aria-label="Rohen logo">
       <path
-        d="M10 8h12c4.4 0 8 3.6 8 8s-3.6 8-8 8h-4l8 8H21L14 24h-4v8H6V8h4zm0 12h8c2.2 0 4-1.8 4-4s-1.8-4-4-4h-8v8z"
         fill="white"
+        d="m27 55 60 66h179l13 4 8 5 8 8 6 10 3 11v12l-6 17-15 15-16 6H144l157 183h91L282 269l1-3 11-1 19-6 24-15 10-10 10-14 10-23 4-19v-31l-3-17-11-27-19-23-12-9-16-8-21-6-18-2Z"
       />
-      <path d="M21 24l8 8" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round" />
+      <path fill="#D4AF37" d="m36 163-1 103 3 5 118 122h95l-2-5-70-79-65-77-73-66Z" />
     </svg>
+    <img v-else :src="logo" alt="Rohen" class="h-10 w-auto" />
     <div>
       <div
         class="text-lg font-bold leading-none tracking-wide"
