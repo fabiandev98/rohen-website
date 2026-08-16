@@ -1,11 +1,12 @@
 export const contact = {
-  whatsappUrl: 'https://wa.me/525512345678',
-  whatsappLabel: '+52 55 1234 5678',
-  phoneUrl: 'tel:+525512345678',
-  email: 'hola@rohen.com',
+  whatsappUrl: 'https://wa.me/971562902153',
+  whatsappLabel: '+971 56 290 2153',
+  phoneUrl: 'tel:+971562902153',
+  email: 'Info@rohenscs.com',
   linkedin: 'https://linkedin.com',
   instagram: 'https://www.instagram.com/rohenscs',
-  location: 'Dubai, UAE',
+  location: 'Business Centre, Sharjah, United Arab Emirates',
+  fullLocation: 'Business Centre, Sharjah Publishing City Free Zone, Sharjah, United Arab Emirates',
 }
 
 export const services = [

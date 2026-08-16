@@ -55,7 +55,7 @@ const { t } = useI18n()
           </a>
           <p class="footer-link">
             <UIcon name="i-lucide-map-pin" class="size-4 shrink-0" />
-            {{ contact.location }}
+            {{ contact.fullLocation }}
           </p>
         </div>
       </div>
