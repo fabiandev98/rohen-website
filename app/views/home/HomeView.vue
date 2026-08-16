@@ -60,20 +60,24 @@ const { t } = useI18n()
           <p class="eyebrow">{{ t('home.servicesEyebrow') }}</p>
           <h2 class="section-title">{{ t('home.servicesTitle') }}</h2>
         </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
           <article
             v-for="(card, i) in services"
             :key="card.id"
-            class="bg-white rounded-lg p-6 flex flex-col cursor-pointer transition-all duration-200"
-            :class="
-              hovered === card.id ? 'border-[#D4AF37] -translate-y-1 shadow-lg' : 'border-gray-200'
-            "
+            class="group flex min-h-[330px] cursor-pointer flex-col rounded-lg bg-white p-6 transition-all duration-200 lg:col-span-2"
+            :class="[
+              hovered === card.id ? 'border-[#D4AF37] -translate-y-1 shadow-lg' : 'border-gray-200',
+              i === 3 ? 'lg:col-start-2' : '',
+            ]"
             style="border-width: 1px"
             @mouseenter="hovered = card.id"
             @mouseleave="hovered = ''"
             @click="$emit('navigate', `service-${card.id}`)"
           >
-            <UIcon :name="icons[i]" class="mb-4 size-8 text-[#D4AF37]" />
+            <UIcon
+              :name="icons[i]"
+              class="mb-4 size-8 text-[#D4AF37] transition-transform duration-200 group-hover:scale-110"
+            />
             <h3 class="text-base font-bold mb-3 leading-snug text-[#0D1B2A]">
               {{ t(`services.${card.id}.title`) }}
             </h3>

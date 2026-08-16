@@ -16,10 +16,10 @@ const { t } = useI18n()
           ◉
         </div>
         <div>
-          <p class="text-xs font-semibold uppercase tracking-[.12em] mb-1 text-[#0D1B2A]">
+          <p class="mb-1 text-sm font-semibold uppercase tracking-[.12em] text-[#0D1B2A]">
             {{ t('cta.eyebrow') }}
           </p>
-          <h2 class="text-2xl lg:text-3xl font-bold text-[#0D1B2A]">
+          <h2 class="text-xl font-bold leading-snug text-[#0D1B2A] lg:text-2xl">
             {{ t('cta.title') }}
           </h2>
         </div>
