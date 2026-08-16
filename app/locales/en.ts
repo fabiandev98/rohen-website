@@ -24,7 +24,50 @@ export default {
       'Our vision is to be the strategic partner of choice for businesses looking to turn their supply chain into a sustainable competitive advantage.',
     learnMore: 'LEARN MORE ABOUT US',
   },
-  cta: { eyebrow: 'DO YOU HAVE A PROJECT IN MIND?', title: 'Let’s talk about how we can help.' },
+  about: {
+    eyebrow: 'ABOUT US',
+    title: 'Strategic approach. Real results.',
+    description:
+      'We are a team of professionals specialized in supply chain, logistics, and strategic consulting, committed to our clients’ success.',
+    imageAlt: 'Industrial warehouse',
+    missionTitle: 'Our mission',
+    missionDescription:
+      'We help companies turn their supply chain into a sustainable competitive advantage through practical, structured, and results-oriented solutions.',
+    missionApproach:
+      'We work closely with every client, understanding their operation and objectives to design and implement solutions that truly work.',
+    valuesEyebrow: 'OUR VALUES',
+    valuesTitle: 'What defines us',
+    values: {
+      technicalRigor: {
+        title: 'Technical rigor',
+        description: 'We apply proven methodologies and sound analysis to every project.',
+      },
+      resultsCommitment: {
+        title: 'Commitment to results',
+        description: 'We measure our success by the real impact we generate in the operation.',
+      },
+      transparency: {
+        title: 'Transparency',
+        description: 'We communicate clearly and honestly at every stage of the process.',
+      },
+      adaptability: {
+        title: 'Adaptability',
+        description: 'We design tailored solutions for every client and context.',
+      },
+      collaboration: {
+        title: 'Collaboration',
+        description: 'We work as an extension of each organization’s internal team.',
+      },
+      continuousImprovement: {
+        title: 'Continuous improvement',
+        description: 'We constantly seek new opportunities for efficiency and value.',
+      },
+    },
+  },
+  cta: {
+    eyebrow: 'DO YOU HAVE A PROJECT IN MIND?',
+    title: 'Let’s explore how we can support you.',
+  },
   services: {
     'supply-chain-consulting': {
       eyebrow: 'SERVICE 01',

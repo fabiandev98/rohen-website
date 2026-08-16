@@ -24,7 +24,50 @@ export default {
       'Nuestra visión es ser el socio estratégico de referencia para empresas que buscan transformar su cadena de suministro en una ventaja competitiva sostenible.',
     learnMore: 'CONOCE MÁS SOBRE NOSOTROS',
   },
-  cta: { eyebrow: '¿TIENES UN PROYECTO EN MENTE?', title: 'Hablemos sobre cómo podemos ayudarte.' },
+  about: {
+    eyebrow: 'SOBRE NOSOTROS',
+    title: 'Enfoque estratégico. Resultados reales.',
+    description:
+      'Somos un equipo de profesionales especializados en supply chain, logística y consultoría estratégica, comprometidos con el éxito de nuestros clientes.',
+    imageAlt: 'Bodega industrial',
+    missionTitle: 'Nuestra misión',
+    missionDescription:
+      'Ayudamos a empresas a transformar su cadena de suministro en una ventaja competitiva sostenible, a través de soluciones prácticas, estructuradas y orientadas a resultados.',
+    missionApproach:
+      'Trabajamos de forma cercana con cada cliente, entendiendo su operación y sus objetivos, para diseñar e implementar soluciones que realmente funcionen.',
+    valuesEyebrow: 'NUESTROS VALORES',
+    valuesTitle: 'Lo que nos define',
+    values: {
+      technicalRigor: {
+        title: 'Rigor técnico',
+        description: 'Aplicamos metodologías probadas y análisis sólidos en cada proyecto.',
+      },
+      resultsCommitment: {
+        title: 'Compromiso con resultados',
+        description: 'Medimos nuestro éxito por el impacto real que generamos en la operación.',
+      },
+      transparency: {
+        title: 'Transparencia',
+        description: 'Comunicamos con claridad y honestidad en cada etapa del proceso.',
+      },
+      adaptability: {
+        title: 'Adaptabilidad',
+        description: 'Diseñamos soluciones a la medida de cada cliente y su contexto.',
+      },
+      collaboration: {
+        title: 'Colaboración',
+        description: 'Trabajamos como extensión del equipo interno de cada organización.',
+      },
+      continuousImprovement: {
+        title: 'Mejora continua',
+        description: 'Buscamos constantemente nuevas oportunidades de eficiencia y valor.',
+      },
+    },
+  },
+  cta: {
+    eyebrow: '¿TIENES UN PROYECTO EN MENTE?',
+    title: 'Exploremos cómo podemos apoyarte.',
+  },
   services: {
     procurement: {
       eyebrow: 'SERVICIO 01',

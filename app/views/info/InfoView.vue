@@ -1,21 +1,25 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { contact, services } from '../../data/site'
 import ActionButton from '../../components/shared/ActionButton.vue'
 import { useI18n } from 'vue-i18n'
 defineProps<{ page: string }>()
 defineEmits<{ navigate: [page: string] }>()
 const { t } = useI18n()
-const values = [
-  ['Rigor técnico', 'Aplicamos metodologías probadas y análisis sólidos en cada proyecto.'],
-  [
-    'Compromiso con resultados',
-    'Medimos nuestro éxito por el impacto real que generamos en la operación.',
-  ],
-  ['Transparencia', 'Comunicamos con claridad y honestidad en cada etapa del proceso.'],
-  ['Adaptabilidad', 'Diseñamos soluciones a la medida de cada cliente y su contexto.'],
-  ['Colaboración', 'Trabajamos como extensión del equipo interno de cada organización.'],
-  ['Mejora continua', 'Buscamos constantemente nuevas oportunidades de eficiencia y valor.'],
-]
+const valueKeys = [
+  'technicalRigor',
+  'resultsCommitment',
+  'transparency',
+  'adaptability',
+  'collaboration',
+  'continuousImprovement',
+] as const
+const values = computed(() =>
+  valueKeys.map((key) => ({
+    title: t(`about.values.${key}.title`),
+    description: t(`about.values.${key}.description`),
+  })),
+)
 const valueIcons = [
   'i-lucide-badge-check',
   'i-lucide-target',
@@ -30,47 +34,38 @@ const valueIcons = [
     <div class="max-w-[1280px] mx-auto px-6 lg:px-8">
       <template v-if="page === 'nosotros'"
         ><div class="heading">
-          <p class="eyebrow">SOBRE NOSOTROS</p>
-          <h1>Enfoque estratégico. Resultados reales.</h1>
-          <p>
-            Somos un equipo de profesionales especializados en supply chain, logística y consultoría
-            estratégica, comprometidos con el éxito de nuestros clientes.
-          </p>
+          <p class="eyebrow">{{ t('about.eyebrow') }}</p>
+          <h1>{{ t('about.title') }}</h1>
+          <p>{{ t('about.description') }}</p>
         </div>
         <div class="flex flex-col lg:flex-row gap-12 items-center mb-20">
           <img
             src="https://images.unsplash.com/photo-1689942010216-dc412bb1e7a9?w=800&h=560&fit=crop&auto=format"
-            alt="Bodega industrial"
+            :alt="t('about.imageAlt')"
             class="lg:w-1/2 w-full h-80 lg:h-96 object-cover rounded-2xl"
           />
           <div class="lg:w-1/2">
-            <h2 class="text-2xl font-bold mb-4 text-[#0D1B2A]">Nuestra misión</h2>
-            <p class="copy">
-              Ayudamos a empresas a transformar su cadena de suministro en una ventaja competitiva
-              sostenible, a través de soluciones prácticas, estructuradas y orientadas a resultados.
-            </p>
-            <p class="copy mt-4">
-              Trabajamos de forma cercana con cada cliente, entendiendo su operación y sus
-              objetivos, para diseñar e implementar soluciones que realmente funcionen.
-            </p>
+            <h2 class="text-2xl font-bold mb-4 text-[#0D1B2A]">{{ t('about.missionTitle') }}</h2>
+            <p class="copy">{{ t('about.missionDescription') }}</p>
+            <p class="copy mt-4">{{ t('about.missionApproach') }}</p>
           </div>
         </div>
         <div class="text-center mb-10">
-          <p class="eyebrow">NUESTROS VALORES</p>
-          <h2 class="text-3xl font-bold text-[#0D1B2A]">Lo que nos define</h2>
+          <p class="eyebrow">{{ t('about.valuesEyebrow') }}</p>
+          <h2 class="text-3xl font-bold text-[#0D1B2A]">{{ t('about.valuesTitle') }}</h2>
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <article
             v-for="(v, index) in values"
-            :key="v[0]"
+            :key="v.title"
             class="group rounded-xl border border-gray-200 bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:border-[#D4AF37] hover:shadow-lg"
           >
             <UIcon
               :name="valueIcons[index]"
               class="mb-4 size-7 text-[#D4AF37] transition-transform duration-200 group-hover:translate-x-1"
             />
-            <h3 class="font-bold mb-2 text-[#0D1B2A]">{{ v[0] }}</h3>
-            <p class="text-sm leading-relaxed text-[#4B5563]">{{ v[1] }}</p>
+            <h3 class="font-bold mb-2 text-[#0D1B2A]">{{ v.title }}</h3>
+            <p class="text-sm leading-relaxed text-[#4B5563]">{{ v.description }}</p>
           </article>
         </div></template
       >

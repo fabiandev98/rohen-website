@@ -24,9 +24,49 @@ export default {
       'Nossa visão é ser o parceiro estratégico de referência para empresas que buscam transformar sua cadeia de suprimentos em uma vantagem competitiva sustentável.',
     learnMore: 'SAIBA MAIS SOBRE NÓS',
   },
+  about: {
+    eyebrow: 'SOBRE NÓS',
+    title: 'Abordagem estratégica. Resultados reais.',
+    description:
+      'Somos uma equipe de profissionais especializados em cadeia de suprimentos, logística e consultoria estratégica, comprometidos com o sucesso de nossos clientes.',
+    imageAlt: 'Armazém industrial',
+    missionTitle: 'Nossa missão',
+    missionDescription:
+      'Ajudamos empresas a transformar sua cadeia de suprimentos em uma vantagem competitiva sustentável, por meio de soluções práticas, estruturadas e orientadas a resultados.',
+    missionApproach:
+      'Trabalhamos em proximidade com cada cliente, entendendo sua operação e seus objetivos para desenhar e implementar soluções que realmente funcionam.',
+    valuesEyebrow: 'NOSSOS VALORES',
+    valuesTitle: 'O que nos define',
+    values: {
+      technicalRigor: {
+        title: 'Rigor técnico',
+        description: 'Aplicamos metodologias comprovadas e análises sólidas em cada projeto.',
+      },
+      resultsCommitment: {
+        title: 'Compromisso com resultados',
+        description: 'Medimos nosso sucesso pelo impacto real que geramos na operação.',
+      },
+      transparency: {
+        title: 'Transparência',
+        description: 'Comunicamos com clareza e honestidade em cada etapa do processo.',
+      },
+      adaptability: {
+        title: 'Adaptabilidade',
+        description: 'Desenhamos soluções sob medida para cada cliente e contexto.',
+      },
+      collaboration: {
+        title: 'Colaboração',
+        description: 'Trabalhamos como extensão da equipe interna de cada organização.',
+      },
+      continuousImprovement: {
+        title: 'Melhoria contínua',
+        description: 'Buscamos constantemente novas oportunidades de eficiência e valor.',
+      },
+    },
+  },
   cta: {
     eyebrow: 'VOCÊ TEM UM PROJETO EM MENTE?',
-    title: 'Vamos conversar sobre como podemos ajudar.',
+    title: 'Vamos explorar como podemos apoiar você.',
   },
   services: {
     procurement: {
