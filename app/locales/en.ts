@@ -205,6 +205,14 @@ export default {
       },
     },
   },
+  contactPage: {
+    eyebrow: 'CONTACT',
+    title: 'Let’s talk about your operation.',
+    description:
+      'The fastest way to reach us is through WhatsApp. You can also email us or call us directly.',
+    location: 'LOCATION',
+    whatsappCta: 'Contact us on WhatsApp',
+  },
   footer: {
     navigation: 'NAVIGATION',
     services: 'SERVICES',

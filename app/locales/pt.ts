@@ -297,6 +297,14 @@ export default {
       },
     },
   },
+  contactPage: {
+    eyebrow: 'CONTATO',
+    title: 'Vamos conversar sobre a sua operação.',
+    description:
+      'A forma mais rápida de falar conosco é pelo WhatsApp. Você também pode nos enviar um e-mail ou ligar diretamente.',
+    location: 'LOCALIZAÇÃO',
+    whatsappCta: 'Fale conosco pelo WhatsApp',
+  },
   footer: {
     navigation: 'NAVEGAÇÃO',
     services: 'SERVIÇOS',

@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { contact, services } from '../../data/site'
-import ActionButton from '../../components/shared/ActionButton.vue'
 import { useI18n } from 'vue-i18n'
 defineProps<{ page: string }>()
 defineEmits<{ navigate: [page: string] }>()
 const { t } = useI18n()
+const locationMapUrl =
+  'https://www.google.com/maps/search/?api=1&query=Business%20Centre%2C%20Sharjah%2C%20United%20Arab%20Emirates'
 const valueKeys = [
   'technicalRigor',
   'resultsCommitment',
@@ -96,33 +97,29 @@ const valueIcons = [
       >
       <template v-else
         ><div class="heading">
-          <p class="eyebrow">CONTACTO</p>
-          <h1>Hablemos sobre tu operación.</h1>
-          <p>
-            La forma más rápida de contactarnos es por WhatsApp. También puedes escribirnos al
-            correo o llamarnos directamente.
-          </p>
+          <p class="eyebrow">{{ t('contactPage.eyebrow') }}</p>
+          <h1>{{ t('contactPage.title') }}</h1>
+          <p>{{ t('contactPage.description') }}</p>
         </div>
-        <div class="grid lg:grid-cols-3 gap-6 max-w-3xl mx-auto">
-          <a :href="contact.whatsappUrl" target="_blank" class="contact-card"
-            ><b>WHATSAPP</b><span>{{ contact.whatsappLabel }}</span></a
-          ><a :href="`mailto:${contact.email}`" class="contact-card"
-            ><b>EMAIL</b><span>{{ contact.email }}</span></a
-          >
-          <div class="contact-card">
-            <b>UBICACIÓN</b><span>{{ contact.location }}</span>
-          </div>
+        <div class="grid gap-5 max-w-3xl mx-auto lg:grid-cols-3">
+          <a :href="contact.whatsappUrl" target="_blank" rel="noopener" class="contact-card">
+            <UIcon name="i-simple-icons-whatsapp" class="contact-icon" />
+            <b>WHATSAPP</b>
+            <span>{{ contact.whatsappLabel }}</span>
+          </a>
+          <a :href="`mailto:${contact.email}`" class="contact-card">
+            <UIcon name="i-lucide-mail" class="contact-icon" />
+            <b>EMAIL</b>
+            <span>{{ contact.email }}</span>
+          </a>
+          <a :href="locationMapUrl" target="_blank" rel="noopener" class="contact-card">
+            <UIcon name="i-lucide-map-pin" class="contact-icon" />
+            <b>{{ t('contactPage.location') }}</b>
+            <span>{{ contact.location }}</span>
+          </a>
         </div>
-        <div class="mt-12 text-center">
-          <ActionButton
-            :href="contact.whatsappUrl"
-            target="_blank"
-            label="Contáctanos por WhatsApp"
-            background-color="#0D1B2A"
-            text-color="#FFFFFF"
-            class="inline-flex px-8 py-4"
-          /></div
-      ></template>
+        ></template
+      >
     </div>
   </main>
 </template>
@@ -155,14 +152,31 @@ const valueIcons = [
   margin-right: auto;
 }
 .contact-card {
-  padding: 2rem;
+  min-height: 12.5rem;
+  padding: 1.75rem;
   border: 1px solid #e5e7eb;
   border-radius: 0.75rem;
   text-align: center;
   color: #0d1b2a;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 0.75rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+.contact-card:hover {
+  border-color: #d4af37;
+  box-shadow: 0 12px 24px rgb(13 27 42 / 0.08);
+  transform: translateY(-3px);
+}
+.contact-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #d4af37;
 }
 .contact-card b {
   font-size: 0.75rem;
@@ -171,5 +185,6 @@ const valueIcons = [
 }
 .contact-card span {
   font-weight: 600;
+  line-height: 1.45;
 }
 </style>
