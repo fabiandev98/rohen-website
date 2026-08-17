@@ -3,7 +3,7 @@ export const contact = {
   whatsappLabel: '+971 56 290 2153',
   phoneUrl: 'tel:+971562902153',
   email: 'Info@rohenscs.com',
-  linkedin: 'https://linkedin.com',
+  linkedin: 'https://www.linkedin.com/company/rohen-supply-chain-solutions/',
   instagram: 'https://www.instagram.com/rohenscs',
   location: 'Business Centre, Sharjah, United Arab Emirates',
   fullLocation: 'Business Centre, Sharjah Publishing City Free Zone, Sharjah, United Arab Emirates',
