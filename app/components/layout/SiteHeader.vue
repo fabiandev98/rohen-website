@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
-import { useRoute, useRouter } from '#app'
 import { useI18n } from 'vue-i18n'
 import LanguageSelector from './LanguageSelector.vue'
 import RohenLogo from './RohenLogo.vue'
 import ActionButton from '../shared/ActionButton.vue'
 import { contact, services } from '../../data/site'
-import { supportedLocales, type SupportedLocale } from '../../i18n'
+import { supportedLocales, type SupportedLocale } from '../../i18n/types'
+import { navigateTo } from '#app'
+import { useSwitchLocalePath } from '#imports'
 defineProps<{ activePage: string }>()
 const emit = defineEmits<{ navigate: [page: string] }>()
 const { locale, t } = useI18n()
-const route = useRoute()
-const router = useRouter()
+const switchLocalePath = useSwitchLocalePath()
 const mobile = ref(false)
 const mobileServices = ref(false)
 const localeIcons: Record<SupportedLocale, string> = {
@@ -26,12 +26,7 @@ function go(page: string) {
 function setLocale(nextLocale: SupportedLocale) {
   if (nextLocale === locale.value) return
 
-  void router.push({
-    name: route.name,
-    params: { ...route.params, locale: nextLocale },
-    query: route.query,
-    hash: route.hash,
-  })
+  void navigateTo(switchLocalePath(nextLocale))
 }
 const serviceMenuItems = computed(() =>
   services.map((service) => ({

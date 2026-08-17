@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { SupportedLocale } from '../../i18n'
+import type { SupportedLocale } from '../../i18n/types'
 
 const props = defineProps<{ locale: SupportedLocale; label: string }>()
 const emit = defineEmits<{ select: [locale: SupportedLocale] }>()

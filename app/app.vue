@@ -1,50 +1,40 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 import { useRoute, useRouter } from '#app'
-import { supportedLocales, type SupportedLocale } from './i18n'
+import { useLocalePath } from '#imports'
 import SiteFooter from './components/layout/SiteFooter.vue'
 import SiteHeader from './components/layout/SiteHeader.vue'
 
 const route = useRoute()
 const router = useRouter()
-const currentLocale = computed<SupportedLocale>(() => {
-  const locale = route.params.locale
-
-  return typeof locale === 'string' && supportedLocales.includes(locale as SupportedLocale)
-    ? (locale as SupportedLocale)
-    : 'en'
-})
+const localePath = useLocalePath()
 
 const activePage = computed(() => {
-  if (route.name === 'locale') return 'inicio'
-  if (route.name === 'locale-services') return 'servicios'
-  if (route.name === 'locale-about') return 'nosotros'
-  if (route.name === 'locale-contact') return 'contacto'
-  if (route.name === 'locale-services-serviceId') return `service-${route.params.serviceId}`
+  const path = route.path.replace(/^\/(en|es|pt)(?=\/|$)/, '') || '/'
+
+  if (path === '/') return 'inicio'
+  if (path === '/services') return 'servicios'
+  if (path === '/about') return 'nosotros'
+  if (path === '/contact') return 'contacto'
+  if (path.startsWith('/services/')) return `service-${route.params.serviceId}`
 
   return ''
 })
 
 function navigate(target: string) {
   if (target.startsWith('service-')) {
-    void router.push({
-      name: 'locale-services-serviceId',
-      params: { locale: currentLocale.value, serviceId: target.replace('service-', '') },
-    })
+    void router.push(localePath(`/services/${target.replace('service-', '')}`))
     return
   }
 
-  const routes = {
-    inicio: 'locale',
-    servicios: 'locale-services',
-    nosotros: 'locale-about',
-    contacto: 'locale-contact',
+  const paths = {
+    inicio: '/',
+    servicios: '/services',
+    nosotros: '/about',
+    contacto: '/contact',
   } as const
 
-  void router.push({
-    name: routes[target as keyof typeof routes] ?? 'locale',
-    params: { locale: currentLocale.value },
-  })
+  void router.push(localePath(paths[target as keyof typeof paths] ?? '/'))
 }
 
 onMounted(() => {
